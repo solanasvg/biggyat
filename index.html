@@ -1,249 +1,98 @@
-<html><head><base href="https://sigmaverse.ai"><title>SigmaVerse: The Ultimate Sigma Experience</title><style>
-    body {
-        font-family: 'Orbitron', sans-serif;
-        background-color: #000;
-        color: #00ff00;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        overflow: hidden;
-    }
-    .container {
-        text-align: center;
-        background: rgba(0, 0, 0, 0.8);
-        border: 2px solid #00ff00;
-        border-radius: 15px;
-        padding: 20px;
-        box-shadow: 0 0 20px #00ff00;
-    }
-    h1 {
-        font-size: 3em;
-        margin-bottom: 20px;
-        text-shadow: 0 0 10px #00ff00;
-    }
-    #sigmaCount {
-        font-size: 2em;
-        margin-bottom: 20px;
-    }
-    #clickButton {
-        font-family: 'Orbitron', sans-serif;
-        font-size: 1.5em;
-        padding: 10px 20px;
-        background-color: #000;
-        color: #00ff00;
-        border: 2px solid #00ff00;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: all 0.3s;
-    }
-    #clickButton:hover {
-        background-color: #00ff00;
-        color: #000;
-    }
-    #sigmaLevel {
-        font-size: 1.5em;
-        margin-top: 20px;
-        animation: pulse 1s infinite alternate;
-    }
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        100% { transform: scale(1.1); }
-    }
-    .matrix-bg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-    }
-    .shop {
-        margin-top: 20px;
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-    }
-    .upgrade {
-        background-color: rgba(0, 255, 0, 0.1);
-        border: 1px solid #00ff00;
-        border-radius: 5px;
-        padding: 10px;
-        margin: 5px;
-        cursor: pointer;
-        transition: all 0.3s;
-    }
-    .upgrade:hover {
-        background-color: rgba(0, 255, 0, 0.3);
-    }
-    .upgrade-name {
-        font-weight: bold;
-    }
-    .upgrade-cost {
-        font-size: 0.8em;
-    }
-    .upgrade-level {
-        font-size: 0.9em;
-        margin-top: 5px;
-    }
-    #clickPower {
-        font-size: 1.2em;
-        margin-top: 10px;
-    }
-    .upgrade-effect {
-        font-size: 0.8em;
-        font-style: italic;
-        margin-top: 5px;
-    }
-    #sigmaPerk {
-        font-size: 1.2em;
-        margin-top: 20px;
-        color: #ff00ff;
-        text-shadow: 0 0 5px #ff00ff;
-    }
+<!DOCTYPE html><html><head><base href="https://fonts.googleapis.com/"><title>Big GYATT Visualization</title><style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+  }
+  #gyattContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #gyattSVG {
+    width: 80%;
+    height: 80%;
+    max-width: 600px;
+    max-height: 600px;
+  }
+  .jiggle {
+    animation: jiggle 0.5s infinite;
+  }
+  @keyframes jiggle {
+    0% { transform: translateY(0); }
+    25% { transform: translateY(-5px) rotate(-1deg); }
+    50% { transform: translateY(0) rotate(1deg); }
+    75% { transform: translateY(5px) rotate(-1deg); }
+    100% { transform: translateY(0); }
+  }
 </style></head><body>
-<canvas class="matrix-bg" id="matrixCanvas"></canvas>
-<div class="container">
-    <h1>SigmaVerse</h1>
-    <div id="sigmaCount">Sigma Balls: 100000</div>
-    <div id="clickPower">Click Power: 32</div>
-    <button id="clickButton">INCREASE RIZZ</button>
-    <div id="sigmaLevel">Sigma Level: 5</div>
-    <div id="sigmaPerk">New Sigma Perk Unlocked: Rizz Multiplier x2</div>
-    <div class="shop">
-        <div class="upgrade" id="skibbidiBasic">
-            <div class="upgrade-name">Skibbidi Basic</div>
-            <div class="upgrade-cost">Cost: 34 Sigma Balls</div>
-            <div class="upgrade-level">Level: 3</div>
-            <div class="upgrade-effect">+1 Click Power</div>
-        </div>
-        <div class="upgrade" id="skibbidiPro">
-            <div class="upgrade-name">Skibbidi Pro</div>
-            <div class="upgrade-cost">Cost: 113 Sigma Balls</div>
-            <div class="upgrade-level">Level: 2</div>
-            <div class="upgrade-effect">+5 Click Power</div>
-        </div>
-        <div class="upgrade" id="skibbidiUltra">
-            <div class="upgrade-name">Skibbidi Ultra</div>
-            <div class="upgrade-cost">Cost: 300 Sigma Balls</div>
-            <div class="upgrade-level">Level: 1</div>
-            <div class="upgrade-effect">+20 Click Power</div>
-        </div>
-        <div class="upgrade" id="skibbidiOmega">
-            <div class="upgrade-name">Skibbidi Omega</div>
-            <div class="upgrade-cost">Cost: 1000 Sigma Balls</div>
-            <div class="upgrade-level">Level: 0</div>
-            <div class="upgrade-effect">+50 Click Power</div>
-        </div>
-    </div>
+<div id="gyattContainer">
+  <svg id="gyattSVG" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="skibidiEffect">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" result="turbulence"></feTurbulence>
+      <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="5" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+    </filter>
+    <linearGradient id="sigmaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4B0082;stop-opacity:1"></stop>
+      <stop offset="100%" style="stop-color:#8A2BE2;stop-opacity:1"></stop>
+    </linearGradient>
+  </defs>
+  
+  <g class="jiggle rizz" filter="url(#skibidiEffect)">
+    <!-- Base shape with sigma gradient -->
+    <path d="M10,50 Q30,10 50,50 Q70,10 90,50 Q70,90 50,50 Q30,90 10,50 Z" fill="url(#sigmaGradient)" stroke="#FF1493" stroke-width="2"></path>
+    
+    <!-- Highlights -->
+    <path d="M30,50 Q40,30 50,50 Q60,30 70,50 Q60,70 50,50 Q40,70 30,50 Z" fill="#FFB6C1" opacity="0.7"></path>
+    
+    <!-- Details -->
+    <circle cx="35" cy="45" r="5" fill="#FF1493"></circle>
+    <circle cx="65" cy="45" r="5" fill="#FF1493"></circle>
+    
+    <!-- Text -->
+    <text x="50" y="55" font-size="10" font-weight="bold" text-anchor="middle" fill="#FFFFFF">GYATT</text>
+    <text x="50" y="65" font-size="8" font-weight="bold" text-anchor="middle" fill="#FFFFFF">SKIBIDI SIGMA</text>
+  </g>
+
+  <!-- Skibidi character -->
+  <g transform="translate(80, 80) scale(0.2)">
+    <circle cx="0" cy="0" r="10" fill="#000000"></circle>
+    <rect x="-2" y="-15" width="4" height="15" fill="#000000"></rect>
+    <rect x="-8" y="-5" width="16" height="4" fill="#000000" transform="rotate(30)"></rect>
+    <rect x="-8" y="-5" width="16" height="4" fill="#000000" transform="rotate(-30)"></rect>
+  </g>
+
+  <!-- Sigma symbol -->
+  <text x="15" y="20" font-size="20" font-weight="bold" fill="#4B0082">Σ</text>
+</svg>
 </div>
 
 <script>
-    let sigmaCount = 100000;
-    let sigmaLevel = 5;
-    let clickPower = 32;
-    let rizzMultiplier = 2;
-    const clickButton = document.getElementById('clickButton');
-    const sigmaCountDisplay = document.getElementById('sigmaCount');
-    const sigmaLevelDisplay = document.getElementById('sigmaLevel');
-    const clickPowerDisplay = document.getElementById('clickPower');
-
-    const upgrades = {
-        skibbidiBasic: { cost: 34, power: 1, level: 3 },
-        skibbidiPro: { cost: 113, power: 5, level: 2 },
-        skibbidiUltra: { cost: 300, power: 20, level: 1 },
-        skibbidiOmega: { cost: 1000, power: 50, level: 0 }
-    };
-
-    clickButton.addEventListener('click', () => {
-        sigmaCount += clickPower * rizzMultiplier;
-        updateDisplay();
-        
-        if (sigmaCount >= Math.pow(10, sigmaLevel)) {
-            sigmaLevel++;
-            updateDisplay();
-            unlockNewPerk();
-            
-            // Visual feedback for level up
-            clickButton.style.transform = 'scale(1.2)';
-            setTimeout(() => {
-                clickButton.style.transform = 'scale(1)';
-            }, 200);
-        }
-    });
-
-    function updateDisplay() {
-        sigmaCountDisplay.textContent = `Sigma Balls: ${sigmaCount}`;
-        sigmaLevelDisplay.textContent = `Sigma Level: ${sigmaLevel}`;
-        clickPowerDisplay.textContent = `Click Power: ${clickPower}`;
-    }
-
-    function unlockNewPerk() {
-        const sigmaPerkElement = document.getElementById('sigmaPerk');
-        sigmaPerkElement.textContent = `New Sigma Perk Unlocked: Rizz Multiplier x${rizzMultiplier + 1}`;
-        rizzMultiplier++;
-    }
-
-    Object.keys(upgrades).forEach(upgradeId => {
-        const upgradeElement = document.getElementById(upgradeId);
-        upgradeElement.addEventListener('click', () => buyUpgrade(upgradeId));
-    });
-
-    function buyUpgrade(upgradeId) {
-        const upgrade = upgrades[upgradeId];
-        if (sigmaCount >= upgrade.cost) {
-            sigmaCount -= upgrade.cost;
-            clickPower += upgrade.power;
-            upgrade.level += 1;
-            upgrade.cost = Math.floor(upgrade.cost * 1.5);
-            updateDisplay();
-            updateUpgradeInfo(upgradeId);
-        }
-    }
-
-    function updateUpgradeInfo(upgradeId) {
-        const upgradeElement = document.getElementById(upgradeId);
-        const costElement = upgradeElement.querySelector('.upgrade-cost');
-        const levelElement = upgradeElement.querySelector('.upgrade-level');
-        costElement.textContent = `Cost: ${upgrades[upgradeId].cost} Sigma Balls`;
-        levelElement.textContent = `Level: ${upgrades[upgradeId].level}`;
-    }
-
-    // Matrix rain effect
-    const canvas = document.getElementById('matrixCanvas');
-    const ctx = canvas.getContext('2d');
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const chars = 'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ';
-    const fontSize = 14;
-    const columns = canvas.width / fontSize;
-    const drops = [];
-
-    for (let i = 0; i < columns; i++) {
-        drops[i] = 1;
-    }
-
-    function draw() {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#0f0';
-        ctx.font = fontSize + 'px monospace';
-
-        for (let i = 0; i < drops.length; i++) {
-            const text = chars[Math.floor(Math.random() * chars.length)];
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-            
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-            drops[i]++;
-        }
-    }
-
-    setInterval(draw, 33);
+document.addEventListener('DOMContentLoaded', (event) => {
+  const gyattSVG = document.getElementById('gyattSVG');
+  
+  gyattSVG.addEventListener('mouseover', () => {
+    gyattSVG.querySelector('g').classList.add('jiggle');
+  });
+  
+  gyattSVG.addEventListener('mouseout', () => {
+    gyattSVG.querySelector('g').classList.remove('jiggle');
+  });
+  
+  gyattSVG.addEventListener('click', () => {
+    const currentSize = parseFloat(getComputedStyle(gyattSVG).width);
+    const newSize = currentSize * 1.1; // Increase size by 10%
+    gyattSVG.style.width = `${newSize}px`;
+    gyattSVG.style.height = `${newSize}px`;
+  });
+});
 </script>
 </body></html>
